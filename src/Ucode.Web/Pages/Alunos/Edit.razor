@@ -1,0 +1,64 @@
+﻿@page "/alunos/editar/{id}"
+@inherits EditAlunoPage
+
+<MudText Typo="Typo.h3">Editar</MudText>
+
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudSkeleton Height="55px"/>
+        <MudSkeleton Height="110px"/>
+        <MudSkeleton Height="55px"/>
+        <MudSkeleton Height="110px"/>
+        <MudSkeleton Height="55px"/>
+    </MudPaper>
+}
+else
+{   
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+
+            <DataAnnotationsValidator />
+
+            <MudTextField Label="Nome"
+                          HelperText="Campo Obrigatório"
+                          @bind-Value="InputModel.Nome"
+                          For="@(() => InputModel.Nome)" />
+
+            <MudTextField Label="Contato"
+                          HelperText="Campo Obrigatório"
+                          @bind-Value="InputModel.Contato"
+                          For="@(() => InputModel.Contato)" />
+
+            <MudTextField Label="E-mail"
+                          HelperText="Campo Obrigatório"
+                          @bind-Value="InputModel.Email"
+                          For="@(() => InputModel.Email)" />
+
+            <MudTextField Label="Instagram"
+                          HelperText="Campo Obrigatório"
+                          @bind-Value="InputModel.Instagram"
+                          For="@(() => InputModel.Instagram)" />
+
+            <MudTextField Label="Cidade"
+                          HelperText="Campo Obrigatório"
+                          @bind-Value="InputModel.Cidade"
+                          For="@(() => InputModel.Cidade)" />
+
+            <MudTextField Label="Estado"
+                          HelperText="Campo Obrigatório"
+                          @bind-Value="InputModel.Estado"
+                          For="@(() => InputModel.Estado)" />
+
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary"> Salvar </MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GoToAlunos"> Sair </MudButton>
+        </EditForm>
+    </MudPaper>
+}
+
+@code {
+    private void GoToAlunos()
+    {
+        NavigationManager.NavigateTo("/alunos");
+    }
+}

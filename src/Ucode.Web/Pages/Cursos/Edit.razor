@@ -1,0 +1,55 @@
+﻿@page "/cursos/editar/{id}"
+@inherits EditCursoPage
+
+<MudText Typo="Typo.h3">Editar Curso</MudText>
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudSkeleton Height="55px" />
+        <MudSkeleton Height="110px" />
+        <MudSkeleton Height="55px" />
+        <MudSkeleton Height="110px" />
+        <MudSkeleton Height="55px" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudTextField Label="Nome"
+                          HelperText="Campo obrigatório"
+                          @bind-Value="InputModel.Nome"
+                          For="@(() => InputModel.Nome)" />
+            <MudSelect T="ECursoCategoria"
+                       Label="Categoria"
+                       HelperText="Campo obrigatório"
+                       @bind-Value="InputModel.Categoria">
+
+                @foreach (var categoria in Enum.GetValues(typeof(ECursoCategoria)).Cast<ECursoCategoria>())
+                {
+                    <MudSelectItem Value="@(categoria)">
+                        @categoria
+                    </MudSelectItem>
+                }
+            </MudSelect>          
+          
+            <MudTextField Label="Resumo"
+                          Lines="5"
+                          HelperText="Campo obrigatório"
+                          @bind-Value="InputModel.Resumo"
+                          For="@(() => InputModel.Resumo)" />
+
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Salvar</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GoToAlunos"> Sair </MudButton>
+        </EditForm>
+    </MudPaper>
+}
+
+@code {
+    private void GoToAlunos()
+    {
+        NavigationManager.NavigateTo("/cursos");
+    }
+}

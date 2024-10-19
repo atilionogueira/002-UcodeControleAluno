@@ -1,0 +1,43 @@
+﻿@page "/modulos/adicionar"
+@inherits CreateModuloPage
+
+<MudText Typo="Typo.h3">Novo Modulo</MudText>
+
+<MudPaper Class="pa-8 mt=4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">                                                 
+        <DataAnnotationsValidator />
+
+        <MudSelect T="long"
+                   Label="Curso"
+                   @bind-Value="InputModel.CursoId"
+                   AnchorOrigin="Origin.BottomCenter"
+                   ToStringFunc="cursoId => Cursos.FirstOrDefault(c => c.Id == cursoId)?.Nome">
+            @foreach (var curso in Cursos)
+            {
+                <MudSelectItem T="long" Value="@curso.Id">
+                    @curso.Nome
+                </MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudTextField Label="Nome"
+                      HelperText="Campo Obrigatório"
+                      @bind-Value="InputModel.SubTopico"
+                      For="@(() => InputModel.SubTopico)" />
+
+        <MudTextField Label="Nome"
+                      HelperText="Campo Obrigatório"
+                      @bind-Value="InputModel.Secao"
+                      For="@(() => InputModel.Secao)" />
+
+        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="mt-4">Salvar</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-4" OnClick="GoToAlunos"> Sair </MudButton>
+    </EditForm>
+</MudPaper>
+
+@code {
+    private void GoToAlunos()
+    {
+        NavigationManager.NavigateTo("/modulos");
+    }
+}
