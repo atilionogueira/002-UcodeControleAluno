@@ -1,5 +1,6 @@
 ﻿using Ucode.Core.Models;
 using Ucode.Core.Requests.ControleAluno;
+using Ucode.Core.Requests.Modulo;
 using Ucode.Core.Responses;
 
 namespace Ucode.Core.Handlers
@@ -10,7 +11,7 @@ namespace Ucode.Core.Handlers
         Task<Response<ControleAluno?>> UpdateAsync(UpdateControleAlunoRequest request);
         Task<Response<ControleAluno?>> DeleteAsync(DeleteControleAlunoRequest request);
         Task<Response<ControleAluno?>> GetByIdAsync(GetControleAlunoByIdRequest request);
-        Task<Response<List<ControleAluno>?>> GetAllAsync(GetControleAlunoByPeriodRequest request);
+        Task<PagedResponse<List<ControleAluno>?>> GetAllAsync(GetAllControleAlunoRequest request);
 
     }
 }

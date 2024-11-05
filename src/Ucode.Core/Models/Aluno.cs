@@ -10,8 +10,7 @@ namespace Ucode.Core.Models
         public string Instagram { get; set; } = string.Empty;
         public string Cidade { get; set; } = string.Empty;
         public string Estado { get; set; } = string.Empty;
-        public string UserId { get; set; } = string.Empty;
-        public virtual ICollection<ControleAluno> ControleAlunos { get; set; } = new List<ControleAluno>();
+        public string UserId { get; set; } = string.Empty;    
 
     }
        

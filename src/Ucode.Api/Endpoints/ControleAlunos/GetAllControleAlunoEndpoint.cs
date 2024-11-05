@@ -9,11 +9,11 @@ using Ucode.Core.Responses;
 
 namespace Ucode.Api.Endpoints.ControleAlunos
 {
-    public class GetControleAlunoByPeriodEndpoint : IEndpoint
+    public class GetAllControleAlunoEndpoint : IEndpoint
     {
         public static void Map(IEndpointRouteBuilder app)
              => app.MapGet("/", HandleAsync)
-              .WithName("Controlde Alunos: Get Al ")
+              .WithName("Controlde Alunos: Get All ")
               .WithSummary("Recupera todo os controle de alunos")
               .WithDescription("Recupera todos os controle de alunos")
               .WithOrder(5)
@@ -21,21 +21,16 @@ namespace Ucode.Api.Endpoints.ControleAlunos
 
         private static async Task<IResult> HandleAsync(
             ClaimsPrincipal user,
-            IControleAlunoHandler handler,
-            DateTime? startDate = null,
-            DateTime? endDate = null,
+            IControleAlunoHandler handler,           
             [FromQuery] int pageNumber = Configuration.DefaultPageNumber,
             [FromQuery] int pageSizer = Configuration.DefaultPageSize)
 
         {
-            var request = new GetControleAlunoByPeriodRequest
+            var request = new GetAllControleAlunoRequest
             {
                 UserId = user.Identity?.Name ?? string.Empty,
                 PageNumber = pageNumber,
-                PageSize = pageSizer,
-                StartDate = startDate,
-                EndDate = endDate
-                
+                PageSize = pageSizer,           
             };
 
             var result = await handler.GetAllAsync(request);

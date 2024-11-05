@@ -68,7 +68,7 @@ namespace Ucode.Web.Pages.Cursos
             if (await ConfirmarExclusaoAsync(nome))
             {
                 await ExcluirCursoAsync(id, nome);
-                return new Response<Curso?>(null, 200, $"Curso {nome} excluído com sucesso.");
+               // return new Response<Curso?>(null, 200, $"Curso {nome} excluído com sucesso.");
             }
 
             return new Response<Curso?>(null, 400, "A exclusão foi cancelada pelo usuário.");

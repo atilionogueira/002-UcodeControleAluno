@@ -5,6 +5,7 @@ using Ucode.Api.Endpoints.Cursos;
 using Ucode.Api.Endpoints.Identity;
 using Ucode.Api.Endpoints.Modulos;
 using Ucode.Api.Models;
+using Ucode.Core.Requests.ControleAluno;
 
 
 namespace Ucode.Api.Endpoints
@@ -53,7 +54,7 @@ namespace Ucode.Api.Endpoints
              .MapEndpoint<CreateControleAlunoEndpoint>()
              .MapEndpoint<DeleteControleAlunoEndpoint>()
              .MapEndpoint<GetControleAlunoByIdEndpoint>()
-             .MapEndpoint<GetControleAlunoByPeriodEndpoint>()
+             .MapEndpoint<GetAllControleAlunoEndpoint>()
              .MapEndpoint<UpdateControleAlunoEndpoint>();
 
             endpoints.MapGroup("v1/identity")

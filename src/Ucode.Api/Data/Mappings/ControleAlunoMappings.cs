@@ -10,12 +10,12 @@ namespace Ucode.Api.Data.Mappings
         {
             builder.ToTable("ControleAluno");
 
-            builder.HasKey(x => x.Id);
+            builder.HasKey(ca=> ca.Id);
 
-            builder.Property(m => m.DataInicio)
+            builder.Property(ca => ca.DataInicio)
                 .IsRequired();
 
-            builder.Property(m => m.DataFim)
+            builder.Property(ca => ca.DataFim)
                  .IsRequired();
 
             builder.Property(ca => ca.Resumo)
@@ -26,8 +26,11 @@ namespace Ucode.Api.Data.Mappings
             builder.Property(ca => ca.UserId)
                 .IsRequired(true)
                 .HasMaxLength(160)
-                .HasColumnType("varchar(160)");          
-           
+                .HasColumnType("varchar(160)");
+
+            builder.Property(ca => ca.Status)
+                .IsRequired(true)
+                .HasColumnType("SMALLINT");
         }
     }
 }

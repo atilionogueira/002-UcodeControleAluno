@@ -1,4 +1,6 @@
 ﻿
+using Ucode.Core.Enums;
+
 namespace Ucode.Core.Models
 {
     public class ControleAluno
@@ -7,7 +9,10 @@ namespace Ucode.Core.Models
         public DateTime DataInicio { get; set; } = DateTime.Now;
         public DateTime? DataFim { get; set; }
         public string Resumo { get; set; } = string.Empty;
-       
+
+        public EStatus Status { get; set; } = EStatus.AConcluir;
+
+
         public long CursoId { get; set; }
         public Curso Curso { get; set; } = null!;
         public long ModuloId { get; set; }

@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using Ucode.Core.Enums;
 
 namespace Ucode.Core.Requests.ControleAluno
 {
@@ -14,8 +15,8 @@ namespace Ucode.Core.Requests.ControleAluno
         [Required()]
         public string Resumo { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Aluno inválido")]
-        public long AlunoId { get; set; }
+        [Required(ErrorMessage = "Status Inválido")]
+        public EStatus Status { get; set; }       
 
         [Required(ErrorMessage = "Curso inválido")]
         public long CursoId { get; set; }

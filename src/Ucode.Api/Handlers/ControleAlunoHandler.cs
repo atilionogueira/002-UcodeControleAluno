@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
 using Ucode.Api.Data;
 using Ucode.Core.Common;
 using Ucode.Core.Handlers;
 using Ucode.Core.Models;
 using Ucode.Core.Requests.ControleAluno;
+using Ucode.Core.Requests.Modulo;
 using Ucode.Core.Responses;
 
 namespace Ucode.Api.Handlers
@@ -12,50 +12,30 @@ namespace Ucode.Api.Handlers
     public class ControleAlunoHandler(AppDbContext context) : IControleAlunoHandler
     {
 
-        public async Task<Response<List<ControleAluno>?>> GetAllAsync(GetControleAlunoByPeriodRequest request)
+        public async Task<PagedResponse<List<ControleAluno>?>> GetAllAsync(GetAllControleAlunoRequest request)
         {
             try
             {
-                request.StartDate ??= DateTime.Now.GetFirsDay();
-                request.EndDate ??= DateTime.Now.GetLastDay();
-
-            }
-            catch (Exception)
-            {
-
-                return new PagedResponse<List<ControleAluno>?>(null, 500, "Não foi possível determinar a data de início ou término");
-            }
-
-            try
-            {
                 var query = context
-               .ControleAlunos
-               .AsNoTracking()
-               .Where(x => x.DataInicio >= request.StartDate &&
-                x.DataInicio <= request.EndDate &&
-                x.UserId == request.UserId)
-               .OrderBy(x => x.DataInicio);
+                       .ControleAlunos
+                       .AsNoTracking()
+                       .Where(x => x.UserId == request.UserId)
+                       .OrderBy(x => x.CursoId);
 
-                var controlealuno = await query
+                var controleAlunos = await query
                     .Skip((request.PageNumber - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .ToListAsync();
 
                 var count = await query.CountAsync();
 
-                return new PagedResponse<List<ControleAluno>?>(
-                    controlealuno,
-                    count,
-                    request.PageNumber,
-                    request.PageSize);
+                return new PagedResponse<List<ControleAluno>?>(controleAlunos.Count == 0 ? null : controleAlunos, count, request.PageNumber, request.PageSize);
             }
-            catch 
+            catch
             {
-                return new PagedResponse<List<ControleAluno>?>(null, 500, "Não foi possível obter os controles");
+                return new PagedResponse<List<ControleAluno>?>(null, 500, "Não foi possível recuperar o modulo");
             }
-
         }
-
         public async Task<Response<ControleAluno?>> GetByIdAsync(GetControleAlunoByIdRequest request)
         {
             try
@@ -85,7 +65,8 @@ namespace Ucode.Api.Handlers
                     DataFim = request.DataFim,
                     Resumo = request.Resumo,                 
                     CursoId = request.CursoId,
-                    ModuloId = request.ModuloId
+                    ModuloId = request.ModuloId,
+                    Status = request.Status              
                 };
 
                 await context.ControleAlunos.AddAsync(controlealuno);
@@ -111,7 +92,8 @@ namespace Ucode.Api.Handlers
                     return new Response<ControleAluno?>(null, 404, "Controle de Aluno não encontrado");
                
                 controlealuno.DataFim = request.DataFim;
-                controlealuno.Resumo = request.Resumo;               
+                controlealuno.Resumo = request.Resumo;
+                controlealuno.Status = request.Status;
                 controlealuno.CursoId = request.CursoId;
                 controlealuno.ModuloId = request.ModuloId;
 
@@ -150,5 +132,6 @@ namespace Ucode.Api.Handlers
 
         }
 
+       
     }
 }
