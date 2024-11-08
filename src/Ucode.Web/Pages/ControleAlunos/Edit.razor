@@ -1,0 +1,69 @@
+﻿@page "/controlealunos/editar/{id}"
+@inherits EditControleAlunosPage
+
+<MudText Typo="Typo.h3"> Editar Modulo</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">                  
+        <DataAnnotationsValidator />
+
+        <MudSelect  T="long"
+                    Label = "Curso"
+                    @bind-Value="InputModel.CursoId"
+                    AnchorOrigin="Origin.BottomCenter"
+                    ToStringFunc="cursoId => Cursos.FirstOrDefault(c => c.Id == cursoId)?.Nome">
+            
+            @foreach (var curso in Cursos)
+            {
+                <MudSelectItem T="long" Value="@curso.Id">
+                    @curso.Nome
+                </MudSelectItem>
+            }                 
+        </MudSelect>
+
+        <MudSelect  T="long"
+                    Label="Sub-Tópico"
+                    @bind-Value=InputModel.ModuloId
+                    AnchorOrigin="Origin.BottomCenter"
+                    ToStringFunc="moduloId => Modulos.FirstOrDefault(m => m.Id == moduloId)?.SubTopico">
+            @foreach (var modulo in Modulos)
+            {
+                <MudSelectItem T="long" Value="@modulo.Id">
+                    @modulo.SubTopico
+                </MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudDatePicker Label="Data do Final"
+                       @bind-Date="@InputModel.DataFim"
+                       HelperText="Selecione a data do final do curso" />
+
+        <MudTextField Label="Resumo"
+                      Lines="5"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Resumo"
+                      For="@(() => InputModel.Resumo)" />
+
+        <MudSelect T="EStatus"
+                   Label="Status"
+                   AnchorOrigin="Origin.BottomCenter"
+                   @bind-Value="InputModel.Status">
+            <MudSelectItem T="EStatus" Value="EStatus.AConcluir">
+                A Concluir
+            </MudSelectItem>
+            <MudSelectItem T="EStatus" Value="EStatus.Concluido">
+                Concluído
+            </MudSelectItem>
+        </MudSelect>
+
+        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="mt-4">Salvar</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-4" OnClick="GoToAlunos"> Sair </MudButton>
+    </EditForm>
+</MudPaper>
+
+@code {
+    private void GoToAlunos()
+    {
+        NavigationManager.NavigateTo("/controlealunos");
+    }
+}

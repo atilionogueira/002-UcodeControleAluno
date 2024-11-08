@@ -48,7 +48,7 @@ namespace Ucode.Api.Endpoints
               .MapEndpoint<GetAllModulosEndpoint>()
               .MapEndpoint<UpdateModuloEndpoit>();
 
-            endpoints.MapGroup("v1/controlealuno")
+            endpoints.MapGroup("v1/controlealunos")
              .WithTags("Controle Alunos")
              .RequireAuthorization()
              .MapEndpoint<CreateControleAlunoEndpoint>()

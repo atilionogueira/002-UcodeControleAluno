@@ -119,11 +119,7 @@ namespace Ucode.Web.Pages.Modulos
                 IsBusy = false;
             }
         }
-        #endregion
-
-        
-
-        #region
-        #endregion
+        #endregion      
+     
     }
 }

@@ -7,7 +7,7 @@ namespace Ucode.Core.Requests.ControleAluno
     public class CreateControleAlunoRequest : Request
     {
         [Required(ErrorMessage = "Data inválida")]
-        public DateTime DataInicio { get; set; } = DateTime.Now;
+        public DateTime? DataInicio { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Data inválida")]
         public DateTime? DataFim { get; set; }
@@ -16,7 +16,7 @@ namespace Ucode.Core.Requests.ControleAluno
         public string Resumo { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Status Inválido")]
-        public EStatus Status { get; set; }       
+        public EStatus Status { get; set; } = EStatus.AConcluir;      
 
         [Required(ErrorMessage = "Curso inválido")]
         public long CursoId { get; set; }

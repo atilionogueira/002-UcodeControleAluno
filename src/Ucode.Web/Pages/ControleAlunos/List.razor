@@ -1,0 +1,49 @@
+﻿@page "/controlealunos"
+@inherits ListControleAlunosPage
+
+<MudText Typo="Typo.h3">Lista de Controle de Alunos</MudText>
+<div class="d-flex justify-end">
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.TwoTone.Add" Href="/controlealunos/adicionar"> Adicionar </MudButton>
+</div>
+
+<MudDataGrid Class="mt-4"
+             Items="@ControleAlunos"
+             Filterable="true"
+             QuickFilter="Filter"
+             Hideable="true">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Controle de Alunos</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="SearchTerm"
+                      Placeholder="Filtrar..."
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      Immediate="true"
+                      IconSize="Size.Medium"
+                      Class="mt-0">
+        </MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="#" Sortable="true" />
+        <PropertyColumn Property="x => x.Curso.Nome" Title="Curso" Sortable="true" />
+        <PropertyColumn Property="x => x.Modulo.SubTopico" Title="SubTopico" Sortable="true" />
+        <PropertyColumn Property="x => x.DataFim" Title="Data do Final" Sortable="true" />
+        <PropertyColumn Property="x => x.Status" Title="Status" Sortable="true" />
+
+        <TemplateColumn Class="d-flex justify-end">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudIconButton Icon="@Icons.Material.Filled.Edit"
+                                   Href="@($"/controlealunos/editar/{context.Item.Id}")"
+                                   Color="Color.Primary">
+                    </MudIconButton>
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                                   Color="Color.Error"
+                                   aria-label="Excluir"
+                                   OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Curso.Nome)">
+                    </MudIconButton>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>

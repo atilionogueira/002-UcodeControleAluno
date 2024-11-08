@@ -9,15 +9,11 @@ namespace Ucode.Web.Handlers
     public class ControleAlunoHandler(IHttpClientFactory httpClientFactory) : IControleAlunoHandler
     {
         private readonly HttpClient _client = httpClientFactory.CreateClient(Configuration.HttpClientName);
-
+                  
         public async Task<PagedResponse<List<ControleAluno>?>> GetAllAsync(GetAllControleAlunoRequest request)
         => await _client.GetFromJsonAsync<PagedResponse<List<ControleAluno>?>>("v1/controlealunos")
            ?? new PagedResponse<List<ControleAluno>?>(null, 400, "Não foi possível obter todas os Controle de Alunos");
-        
-        public async Task<PagedResponse<List<ControleAluno>?>> GetPeridAsync(GetControleAlunoByPeriodRequest request)
-        => await _client.GetFromJsonAsync<PagedResponse<List<ControleAluno>?>>("v1/controlealunos")
-           ?? new PagedResponse<List<ControleAluno>?>(null, 400, "Não foi possível obter todas os Controle de Alunos");    
-        
+                    
 
         public async Task<Response<ControleAluno?>> GetByIdAsync(GetControleAlunoByIdRequest request)
         => await _client.GetFromJsonAsync<Response<ControleAluno?>>($"v1/controlealunos/{request.Id}")

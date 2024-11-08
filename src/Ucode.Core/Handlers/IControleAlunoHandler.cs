@@ -1,6 +1,5 @@
 ﻿using Ucode.Core.Models;
 using Ucode.Core.Requests.ControleAluno;
-using Ucode.Core.Requests.Modulo;
 using Ucode.Core.Responses;
 
 namespace Ucode.Core.Handlers
@@ -14,4 +13,5 @@ namespace Ucode.Core.Handlers
         Task<PagedResponse<List<ControleAluno>?>> GetAllAsync(GetAllControleAlunoRequest request);
 
     }
+                                      
 }

@@ -35,6 +35,7 @@ builder.Services.AddTransient<IAccountHandler, AccountHandler>();
 builder.Services.AddTransient<IAlunoHandler, AlunoHandler>();
 builder.Services.AddTransient<ICursoHandler, CursoHandler>();
 builder.Services.AddTransient<IModuloHandler, ModuloHandler>();
+builder.Services.AddTransient<IControleAlunoHandler, ControleAlunoHandler>();
 
 
 

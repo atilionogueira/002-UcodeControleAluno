@@ -16,7 +16,7 @@ namespace Ucode.Core.Models
         public long CursoId { get; set; }
         public Curso Curso { get; set; } = null!;
         public long ModuloId { get; set; }
-        public Modulo Mudulo { get; set; } = null!;
+        public Modulo Modulo { get; set; } = null!;
 
         public string UserId { get; set; } = string.Empty;      
 
