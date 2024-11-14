@@ -1,7 +1,15 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<MudGrid Justify="Justify.Center">
+    <MudItem lg="6" md="12" sm="12" xs="12">
+        <MudCard Class="pa-8">
+            <MudCardHeader>
+                <MudText Typo="Typo.h6" Align="Align.Center"> Evolução do Aprendizado dos Cursos </MudText>
+            </MudCardHeader>
+            <MudCardContent>
+                <AConcluirAndConcluidoChart />
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+</MudGrid>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.

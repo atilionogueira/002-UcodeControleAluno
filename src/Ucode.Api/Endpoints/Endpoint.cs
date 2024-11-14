@@ -4,6 +4,7 @@ using Ucode.Api.Endpoints.ControleAlunos;
 using Ucode.Api.Endpoints.Cursos;
 using Ucode.Api.Endpoints.Identity;
 using Ucode.Api.Endpoints.Modulos;
+using Ucode.Api.Endpoints.Reports;
 using Ucode.Api.Models;
 using Ucode.Core.Requests.ControleAluno;
 
@@ -66,6 +67,10 @@ namespace Ucode.Api.Endpoints
            .MapEndpoint<LogoutEndpoint>()
            .MapEndpoint<GetRolesEndpoint>();
 
+            endpoints.MapGroup("/v1/reports")
+            .WithTags("Reports")
+            .RequireAuthorization()
+            .MapEndpoint<GetConcluidoAndAConcluirEndpoint>();
         }
         private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)
             where TEndpoint : IEndpoint

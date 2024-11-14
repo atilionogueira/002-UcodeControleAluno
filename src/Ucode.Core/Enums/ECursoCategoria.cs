@@ -1,5 +1,4 @@
-﻿
-namespace Ucode.Core.Enums
+﻿namespace Ucode.Core.Enums
 {
     public enum ECursoCategoria
     {

@@ -73,7 +73,7 @@ namespace Ucode.Api.Common.Api
             builder.Services.AddTransient<ICursoHandler, CursoHandler>();
             builder.Services.AddTransient<IModuloHandler, ModuloHandler>();
             builder.Services.AddTransient<IControleAlunoHandler, ControleAlunoHandler>();
-
+            builder.Services.AddTransient<IReportHandler, ReportHandler>();
         }
     }
 }

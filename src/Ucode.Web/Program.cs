@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
+using System.Globalization;
 using Ucode.Core.Handlers;
 using Ucode.Web;
 using Ucode.Web.Handlers;
@@ -36,6 +37,11 @@ builder.Services.AddTransient<IAlunoHandler, AlunoHandler>();
 builder.Services.AddTransient<ICursoHandler, CursoHandler>();
 builder.Services.AddTransient<IModuloHandler, ModuloHandler>();
 builder.Services.AddTransient<IControleAlunoHandler, ControleAlunoHandler>();
+builder.Services.AddTransient<IReportHandler, ReportHandler>();
+
+builder.Services.AddLocalization();
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
+CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pt-BR");
 
 
 

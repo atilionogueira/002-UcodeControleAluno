@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Ucode.Api.Models;
 using Ucode.Core.Models;
+using Ucode.Core.Models.Reports;
 
 namespace Ucode.Api.Data
 {
@@ -22,6 +23,8 @@ namespace Ucode.Api.Data
         public DbSet<Curso> Cursos { get; set; } = null!;
         public DbSet<Modulo> Modulos { get; set; } = null!;
 
+        public DbSet<ConcluidoAndAConcluir> ConcluidoAndAConcluirs{ get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -33,6 +36,9 @@ namespace Ucode.Api.Data
             .HasForeignKey(m => m.CursoId)
             .OnDelete(DeleteBehavior.Restrict); // Evita a exclusão em cascata.
 
+            modelBuilder.Entity<ConcluidoAndAConcluir>()
+                .HasNoKey()
+                .ToView("vwConcluidoAndAConcluir");
         }
     }
 }
