@@ -60,18 +60,22 @@ namespace Ucode.Web.Components.Reports
         {
             var aconcluir = new List<double>();
             var concluido = new List<double>();
+            var total = new List<double>();
 
             foreach (var item in data)
             {
                 aconcluir.Add((double)item.AConcluir);
                 concluido.Add((double)item.Concluido);
+                total.Add((double)item.Total);
+
                 Labels.Add(GetMonthName(item.Mes));
             }
 
             Series = new List<ChartSeries>
     {
         new ChartSeries { Name = "A Concluir", Data = aconcluir.ToArray() },
-        new ChartSeries { Name = "Concluído", Data = concluido.ToArray() }
+        new ChartSeries { Name = "Concluído", Data = concluido.ToArray() },
+         new ChartSeries { Name = "Total", Data = total.ToArray() }
     };
         }
 
@@ -80,8 +84,8 @@ namespace Ucode.Web.Components.Reports
             Options = new ChartOptions
             {
                 YAxisTicks = 2,
-                LineStrokeWidth = 5,              
-                ChartPalette = new[] { "#594AE2", Colors.Red.Default }
+                LineStrokeWidth = 5,                
+                 ChartPalette = new[] { Colors.Red.Default, Colors.Green.Accent4, Colors.Blue.Default }
             };
         }
 

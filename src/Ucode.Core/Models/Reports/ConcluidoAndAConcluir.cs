@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ucode.Core.Models.Reports
 {
-    public record ConcluidoAndAConcluir(string UserId, int Mes, int Ano, int AConcluir , int Concluido)
+    public record ConcluidoAndAConcluir(string UserId, int Mes, int Ano, int AConcluir , int Concluido, int Total)
     {
     }
 }

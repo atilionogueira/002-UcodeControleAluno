@@ -121,7 +121,7 @@ namespace Ucode.Web.Pages.ControleAlunos
                 if (moduloResult.IsSucess)
                 {
                     Modulos = moduloResult.Data ?? [];
-                    InputModel.CursoId = Modulos.FirstOrDefault()?.Id ?? 0;
+                    InputModel.ModuloId = Modulos.FirstOrDefault()?.Id ?? 0;
                 }
             }
             catch (Exception ex)
